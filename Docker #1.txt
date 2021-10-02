@@ -1,0 +1,106 @@
+
+$ docker --help
+
+- To Create a docker container
+$ docker container --help
+
+- To run a new container
+$ docker container run --help
+
+-To install an Image from dockerhub
+$ docker pull <ImageName>
+0R
+$ docker pull <ImangeName:Tag>
+
+- Create a container in foreground
+- Each container must have a unique name
+$ docker container run --name firstcont -it ubuntu:latest 	 {-i -t}
+-> -i : interactive
+   -t : tty {show result in terminal }
+-> If you dont give a container a name, system will giveit any name and system will show
+    ID of created cointer after execution of command
+-> You can control name but ID will be automatically allocated to created container
+
+- Create a container in background
+$ docker container run --name secondcont -id ubuntu:latest 	 {-i -d}
+-> -d : in background
+
+- To exit from container terminal and dont stop container process
+press -> ctrl + p + q
+
+-List processes
+$ docker ps	-> Shows Only running containers
+$ docker ps -a -> Shows ALL containers {running or stopped}
+
+-List running containers
+$ docker container ls
+
+-list all containers
+$ docker container ls -a
+
+-To stop a container
+$ docker container stop <ContainerID> or <ContainerName>
+
+- Delete all stopped containers
+$ docker container prune
+OR
+$ docker rm -f $(docker ps -a -q)
+
+
+- To run command in terminal of a container
+$ docker container exec --help
+$ docker container exec -it firstcont ls /
+
+- Open a bash shell in container
+$ docker container exec -it firstcont bash
+
+Note: even if you used one image in many containers, each container have its own
+data {Isolation}
+-Container : running instance of an image
+
+-list images in system
+$ docker image ls
+
+LFS -> Layer File System
+-> image containes of multiple layers
+-> each container share same image, and have its
+own R/W Layer
+
+-To start a stopped container
+$ docker container start <ContainerName>
+
+- create image from running container (image containes all changes in that containers that is used to create another container with same data)
+$ docker commit --help
+$ docker commit firstcon firstimage   --> will have :latest tag
+- New tag means a new image even if repository name is same
+$ docker commit firstcon firstimage:v1
+
+- if you created a image with same name:tag that is already exist, created  image will override the exist image
+while in creating a container terminal will show an error that this name is already exists
+
+CI -> Container integration
+
+- Show layers of an Image
+$ docker image history
+
+->if you used history command with an image that is created bt commit commnad
+you wont be able to see all commands you entered in bash terminal
+instead you will only have a line that tells you that there was activity in bash with
+size of executed command without telling you what excatly you wrote
+
+Udemy Course------------------------------------
+- to open terminal of a container
+$ docker attach <First char of container's ID>
+ex $ docker attach 8
+
+- start a container 
+$ docker start 8
+8-> first char of ID {you dont have to type whole ID for simplicity}
+
+- Remove a container
+$ docker rm <ContainerID>
+
+$ docker run -it -d --rm --name linux1 ubuntu:latest /bin/bash
+-> -d: to deattach this container {Dont open it;s terminal automatically}
+-> --rm : to remove container when it's stopped
+

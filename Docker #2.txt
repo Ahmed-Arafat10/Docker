@@ -1,0 +1,25 @@
+$ docker container run --name conainer1 -it ubuntu ls /
+-> ls / will override CMD of Ubuntu Image
+-> CMD can be ovirriden while ENTRYPOINT cannot , so enterpoint {Bash script} instruction is put inside ENTRYPOINT
+but ENTRYPOINT can be overriden also bt adding flag --entrypoint
+
+
+$ docker build -t <NewImageName> .
+->[.] automatically use file of name [dockerfile] in cur. dir.
+
+$ docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > my-httpd.conf
+-> -rm : automatically remove container when it exits
+
+-
+$ docker build -t ImageName:Tag .
+
+-
+$ docker build -t ImageName:Tag --no-cache .
+
+$ docker login -u DockeHubID
+
+$ docker tag myimg:v1 ahmedaraft10/myimg:v1
+
+$ docker push ahmedaraft10/myimg:v1
+
+$ docker pull ahmedaraft10/myimg:v1
