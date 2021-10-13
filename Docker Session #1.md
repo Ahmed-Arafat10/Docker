@@ -1,6 +1,5 @@
-==========
-Session #1
-==========
+# Docker Session #1
+
 
 Intro :
 -------
@@ -18,18 +17,18 @@ dependencies you need another server
 2) Resources are not efficiently allocated, as you have to buy a server with huge specifications
 {Which is too costly for new businesses} but during early age of project just few people will use
 your project
-
+```
             Application
             -----------
           Operating system
     ---------------------------
     Hardware{Physical Resources}
-
+```
 
 - After Virtualization : The process of running a virtual instance of a computer system in a
 layer abstracted from actual hardware
 
-
+```
     VM1|VM2|VM3|
     ------------ Other Application
     Hypervisor |
@@ -37,10 +36,11 @@ layer abstracted from actual hardware
        Host Operating system
     ----------------------------
     Hardware{Physical Resources}
-
+```
 
 - Virtual Machine :
 
+```
        App1  |   App2  |   App3
     Bins/Libs|Bins/Libs|Bins/Libs
     Guest OS | Guest OS | Guest OS
@@ -50,6 +50,7 @@ layer abstracted from actual hardware
        Host Operating system
     ----------------------------
     Hardware{Physical Resources}
+```
 
 - Problem of virtualization is that it needs too much resources, for example
 if you have to deploy 3 applications each one needs Linux OS but with different dependences & binaries
@@ -83,15 +84,19 @@ container image.
 
 
 - List docker commands
-$ docker --help
+```
+docker --help
+```
 
 - To List docker container commands
-$ docker container --help
-
+```
+docker container --help
+```
 
 - To List docker run container command
-$ docker container run --help
-
+```
+docker container run --help
+```
 
 - You can not share docker containers as they are running proccesses in the system, you only can share images
 in which docker container is created from
@@ -115,74 +120,94 @@ that includes private and public image repositories.
 
 
 - To install an Image from Docker Hub {With latest tag by default}
-$ docker pull <ImageName>
-
+```
+docker pull <ImageName>
+```
 
 - To install an Image from Docker Hub {With specific tag}
-$ docker pull <ImangeName:Tag>
-
+```
+docker pull <ImangeName:Tag>
+```
 
 
 - Create a container in foreground
-$ docker container run --name firstcont -it ubuntu:latest
-> -i : interactive
-> -t : tty {show result in terminal}
-> --name : to give the container a name
-> Note : Each container must have a unique name
--> If you do not give a container a name, system will give it any name and system will show
-ID of created container after execution of command
--> You can control name but ID will be automatically allocated to created container
+```
+docker container run --name firstcont -it ubuntu:latest
+```
+> -i : interactive <br>
+> -t : tty {show result in terminal} <br>
+> --name : to give the container a name <br>
+> Note : Each container must have a unique name <br>
+> If you do not give a container a name, system will give it any name and system will show
+ID of created container after execution of command <br>
+> You can control name but ID will be automatically allocated to created container
 
 
 - Create a container in background
-$ docker container run --name secondcont -id ubuntu:latest
+
+```
+docker container run --name secondcont -id ubuntu:latest
+```
 > -d : stands for detach, run container in background
 
 
 - To exit from container terminal without stopping the container
-press -> ctrl + p + q
+press : ```ctrl + p + q```
 
 
 - List created Docker Containers
-$ docker ps
+```
+docker ps
+```
 > Shows Only running docker containers
 
-$ docker ps -a
+```
+docker ps -a
+```
 > Shows ALL docker containers {running or stopped}
 
 
 - List running docker containers {Docker New Version}
-$ docker container ls
-
+```
+docker container ls
+```
 
 - List all docker containers {Docker New Version}
-$ docker container ls -a
-
+```
+docker container ls -a
+```
 
 - Stop a docker container
-$ docker container stop <ContainerID>
-> OR <ContainerName>
+```
+docker container stop <ContainerID>
+```
+> OR <ContainerName> <br>
 > You can use just first two character of ContainerID instead of copying whole ID
 
 - Delete all stopped docker containers
-$ docker container prune
-
+```
+docker container prune
+```
 
 - Remove all containers whether running or stopped {Not Recommended At All}
-$ docker rm -f $(docker ps -a -q)
-
+```
+docker rm -f $(docker ps -a -q)
+```
 
 - List docker container exec command menu
-$ docker container exec --help
-
+```
+docker container exec --help
+```
 
 - Run a command in terminal of a running docker container
-$ docker container exec -it <ContainerID> ls /
-
+```
+docker container exec -it <ContainerID> ls /
+```
 
 - Open a bash shell in a running docker container {Enter inside a running container}
-$ docker container exec -it <ContainerID> bash
-
+```
+docker container exec -it <ContainerID> bash
+```
 
 Note: even if you used one image in many containers, each container have its own
 data {Isolation}
@@ -191,8 +216,9 @@ data {Isolation}
 
 
 - List images in system
-$ docker image ls
-
+```
+docker image ls
+```
 
 - Docker uses concept of LFS -> Layer File System
 - Image contains of multiple layers
@@ -201,8 +227,9 @@ own R/W Layer {Read/Write} in which all of its files/Directories are exist in
 
 
 - Start a stopped docker container
-$ docker container start <ContainerID>
-
+```
+docker container start <ContainerID>
+```
 
 Create Costume Image :
 ---------------------
@@ -215,18 +242,22 @@ Create Costume Image :
 
 
 - List docker commit command menu
-$ docker commit --help
-
+```
+docker commit --help
+```
 
 - Create an image from RUNNING container (This image will contains all changes in that containers that
 will be used to create another container with same data {Files/Dir.})
-$ docker commit <ContainerID> <NewImageName:tag>
+```
+docker commit <ContainerID> <NewImageName:tag>
+```
 > will have [:latest] tag
 
 
 - New tag means a new image even if repository name is same
-$ docker commit firstcon firstimage:v1
-
+```
+docker commit firstcon firstimage:v1
+```
 
 - If you created an image with same name:tag that is already exist, created  image will override the exist image
 while in creating a container terminal will shows an error that this name is already exists
@@ -236,9 +267,13 @@ while in creating a container terminal will shows an error that this name is alr
 - CD -> Continuous Development
 
 - Show layers of an Image {Based on docker}
-$ docker image history <ImageName>
-Example : $ docker image history httpd
-
+```
+docker image history <ImageName>
+```
+Example : 
+```
+docker image history httpd
+```
 
 - If you used history command with an image that is created by $ docker commit command in Line #211
 you wont be able to see all commands you entered in bash terminal, instead you will only have a line
