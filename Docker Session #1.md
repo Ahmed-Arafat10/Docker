@@ -255,6 +255,7 @@ docker commit <ContainerID> <NewImageName:tag>
 
 
 - New tag means a new image even if repository name is same
+- Example :
 ```
 docker commit firstcon firstimage:v1
 ```
