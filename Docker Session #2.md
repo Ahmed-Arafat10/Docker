@@ -19,7 +19,7 @@ Docker file instructions :
 - ```RUN```: Will execute any commands in a new layer
 - ```CMD```: Provides a default for an executing container. There can only be one
 CMD instruction in a Dockerfile
-- remember if you write a multi CMD in dockerfile,
+- Remember if you write a multi CMD in dockerfile,
 last CMD will override all of them {it overrides also CMD of base image}
 also in ```docker container run -it --name test Ubuntu ls /```
 > ```ls /``` : will override CMD of Ubuntu image {```CMD["bash"]```} so it will execute ```ls``` command
@@ -30,8 +30,9 @@ then will exit from container {As bash is what make a container up and running}
 - ```ADD```: Copies new files, directories or remote file URLs from <src> and adds them to the file system of the image at the path <dest>.
 - ```COPY```: Copies new files or directories from <src> and adds them to the file system of the container at the path <dest>.
 - ```ENTRYPOINT```: Allows for configuring a container that will run as an executable
+- Remember : you can override enterypoint by ```--entrypoint``` in ```docker container run``` command {New feature in Docker}
 - ```VOLUME```: Creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers
-you can override enterypoint by --entrypoint in $ docker container run command
+
 
 - ```USER```: Sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD,
 and ENTRYPOINT instructions that follow it in the Dockerfile
@@ -43,8 +44,8 @@ and ENTRYPOINT instructions that follow it in the Dockerfile
 
 - Note : $ docker container run --name container1 -it Ubuntu ls /
 > ls / will override CMD of Ubuntu Image
-- CMD can be overwritten while ENTRYPOINT cannot , so enterpoint {Bash script} instruction is put inside ENTRYPOINT
-but ENTRYPOINT can be overwritten also by adding flag --entrypoint
+- ```CMD``` can be overwritten while ```ENTRYPOINT``` cannot , so enterpoint {Bash script} instruction is put inside ```ENTRYPOINT```
+but ```ENTRYPOINT``` can be overwritten also by adding flag ```--entrypoint```
 
 
 
@@ -73,12 +74,12 @@ Task :
 -----
 
 - Run httpd container modify its configuration file to run on port ```9090```
-instead of port ```8080```, then to echo a text when docker container starts running
+instead of port ```8080```, then echo a text when docker container starts running
 
 Answer :
 -------
 
-- First you have to have a configuration file that is edited to port 9090, but you dont
+- First you have to have a configuration file that is edited to port ```9090```, but you dont
 have this file, so you will run a httpd docker container and then copy configuration file
 into your host PC
 
@@ -94,7 +95,7 @@ flag is used, so docker container will be automatically removed
 
 - Now you can copy the modfied configuration file into path of configuration configuration file
 inside image
-- You can then COPY your custom configuration in as ```/usr/local/apache2/conf/httpd.conf``` :
+- You can then ```COPY``` your custom configuration in as ```/usr/local/apache2/conf/httpd.conf``` :
 
 - In Dockerfile :
 ```
@@ -114,7 +115,7 @@ as httpd is running inside a docker container having port 9090
 
 - You can run docker commands in a sandbox environment {Just For Testing}
 website : https://labs.play-with-docker.com/
-- Dont use your credentials
+> **Dont use your credentials**
 
 
 - Remove a container
@@ -140,7 +141,7 @@ docker build -t ImageName:Tag --no-cache .
 ```
 
 - Map to port of docker container {5050 refers to 9090}
-> This means that ```localhost:5050``` in Host pc will be able to communicate
+> This means that ```localhost:5050``` in Host PC will be able to communicate
 with port ```9090``` of docker container
 ```
 docker container run -it -p 5050:9090 <ImageName>
@@ -191,6 +192,6 @@ docker image rm ahmedaraft10/myimg:v1
 docker image rm Ubuntu
 ```
   
-- Note: Best practice is that instead of writing too many RUN command in
-a dockerfile, just create on RUN and [&&] between differnet commands
-as each RUN is created in a separate layer.
+- Note: Best practice is that instead of writing too many ```RUN``` command in
+a dockerfile, just create one ```RUN``` and ```&&```OR ```:``` between differnet commands
+as each ```RUN``` is created in a separate layer.
