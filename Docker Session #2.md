@@ -193,5 +193,5 @@ docker image rm Ubuntu
 ```
   
 - Note: Best practice is that instead of writing too many ```RUN``` command in
-a dockerfile, just create one ```RUN``` and ```&&```OR ```:``` between differnet commands
+a dockerfile, just create one ```RUN``` and ```&&```OR ```;``` between differnet commands
 as each ```RUN``` is created in a separate layer.
