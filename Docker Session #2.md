@@ -9,20 +9,21 @@ Process A requested 500 mb of ram {cannot exceed limit}
 
 - Namespaces Feature: Each process in Linux act as its alone in the
 system {Totally Isolated} as its the system, so process are put in
-a virtual isolated area along with need resources
+a virtual isolated area along with needed resources
 
 
-- Docker file instructions :
-----------------------------
+Docker file instructions :
+---------------------------
 
 - ```FROM```: Initializes a new build stage and sets the Base Image
 - ```RUN```: Will execute any commands in a new layer
 - ```CMD```: Provides a default for an executing container. There can only be one
-CMD instruction in a Dockerfile, remember if you write a multi CMD in dockerfile,
+CMD instruction in a Dockerfile
+- remember if you write a multi CMD in dockerfile,
 last CMD will override all of them {it overrides also CMD of base image}
-also in $ docker container run -it --name test Ubuntu ls /
-ls / -> will override CMD of Ubuntu image {CMD["bash"]} so it will execute ls command
-then will exit from container { as bash is what make a container up and running}
+also in ```docker container run -it --name test Ubuntu ls /```
+> ```ls /``` : will override CMD of Ubuntu image {```CMD["bash"]```} so it will execute ```ls``` command
+then will exit from container {As bash is what make a container up and running}
 - ```LABEL```: Adds metadata to an image
 - ```EXPOSE```: Informs Docker that the container listens on the specified network ports at runtime
 - ```ENV```: Sets the environment variable <key> to the value <value>
