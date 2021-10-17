@@ -297,7 +297,7 @@ Docker Compose :
 
 - Compose is a tool for defining and running multicontainer Docker applications automatically without
 manually writing docker commands
-- With Compose, you use a YAML file to configure your application’s services.
+- With Compose, you use a ```.YAML``` file to configure your application’s services.
 Then, with a single command you can create and start all the services from your configuration
 - Documentation : https://docs.docker.com/compose/compose-file
 - You have first to install it
@@ -306,24 +306,23 @@ Then, with a single command you can create and start all the services from your 
 - Contianers in Docker Compose will be called services
 - While in kuburantes containers are called pods
 
-- A Compose file is called docker-compose.yaml
-- If you want to use another name use –f <NameOfFile>
-- It is a yaml file but we have an option to use json as an alternative {Not Recommended}
+- A Compose file is called ```docker-compose.yaml```
+- If you want to use another name use ```–f <NameOfFile>```
+- It is a ```yaml``` file but we have an option to use json as an alternative {Not Recommended}
 
 - Docker-compose file has four types of top-level keys(version-services-networks-volumes):
 
-1) Version: it WAS mandatory, it is to define the compose file format and it is tight to version of docker engine.
-2) Service: to define services definition. Each service definition represent a CONTAINER
-3) Volumes: to define volumes that will be managed by compose.
-4) Network: to define network that will be manged by compose, Bridge is set by default .
+1) ```Version```: it WAS mandatory, it is to define the compose file format and it is tight to version of docker engine.
+2) ```Service```: to define services definition. Each service definition represent a CONTAINER
+3) ```Volumes```: to define volumes that will be managed by compose.
+4) ```Network```: to define network that will be manged by compose, Bridge is set by default .
 
-- Depends_on: is used to define which service is depend on another one as we can’t run this service before we
+- ```Depends_on```: is used to define which service is depend on another one as we can’t run this service before we
 making sure the dependent one is running
 
 
-A docker-compose.yml looks like this:
-
-------------------------------------------------
+A ```docker-compose.yml``` looks like this:
+```
 version: "3.9"  # optional since v1.27.0
 services:
   web:
@@ -339,11 +338,11 @@ services:
     image: redis
 volumes:
   logvolume01: {}
-------------------------------------------------
+```
 
-Note : volumes are used in production level instead of Bind Mounting
-as you can create a volumes in server where other devices can access it
-while mounting is used to mount on volumes locally only {On your PC}
+- Note : ```Volumes``` are used in production level instead of ```Bind Mounting```
+as you can create a ```volumes``` in server where other devices can access it
+while ```mounting``` is used to mount on volumes locally only {On your PC}
 
 - If you have 20 server installed on them docker using swarm you cannot config
 20 server with bind mount so you use intead volumes
@@ -351,59 +350,70 @@ while mounting is used to mount on volumes locally only {On your PC}
 
 
 - To open docker-compose command menu
-$ docker-compose --help
-
+```
+docker-compose --help
+```
 
 - Check if there is any synatx error in docker-compose.yaml file
-$ docker-compose config
-
+```
+docker-compose config
+```
 - Create a compose services {Containers}:
-$ docker-compose up -d
+```
+docker-compose up -d
+```
 > -d : detach {run in background}, as docker-compose up command runs in foreground {holds terminal}
 
 - List containers created by compose:
-$ docker-compose ps
-
+```
+docker-compose ps
+```
 
 - Stopping a compose service:
-$ docker-compose stop
-
+```
+docker-compose stop
+```
 
 - Starting a compose service:
-$ docker-compose start
-
+```
+docker-compose start
+```
 
 - Restarting a compose service:
-$ docker-compose restart
-
+```
+docker-compose restart
+```
 
 - Delete a compose service:
-$ docker-compose down
+```
+docker-compose down
+```
 > docker-compose .yaml file must be in folder
 
 
-------
-Task :
-------
+
+### Task :
+
 
 - Create a docker compose file to run WordPress
 
 
-Answer :
---------
+### Answer :
 
-- Create docker-compose.yaml
+
+- Create ```docker-compose.yaml```
 
 - Check for docker and docker compose versions {To be able to write version command in docker compose file}
-$ docker --version
-$ docker-compose --version
-
+```
+docker --version
+docker-compose --version
+```
 - Dont forget to install docker compose extension from visual studio code
 - docker compose is created using python
-- So, .yaml files are like python where extra spaces matter
+- So, ```.yaml``` files are like python where extra spaces matter
 
-In docker-compose.yaml :
--------------------------------------
+In ```docker-compose.yaml``` :
+```
 version: '3.1'
 
 services:
@@ -438,53 +448,55 @@ services:
 volumes:
   wordpress_data: {}
   db_data: {}
------------------------------------------------
-- both are correct, wordpress_data: {} OR wordpress_data:
+```
+- both are correct, ```wordpress_data: {}``` OR ```wordpress_data:```
 but should be applied to all other volumes in docker compose file
 
 
-Note : evironment variables of wordpress user/name/password is same as database password
+Note : ```Evironment Variables``` of wordpress user/name/password is same as database password
 
 
 - Then Create a compose service:
-$ docker-compose up -d
-
-- Now open localhost:8080 and Wordpress should works
+```
+docker-compose up -d
+```
+- Now open ```localhost:8080``` and Wordpress should works
 
 
 - To see logs
-$ docker-compose logs
+```
+docker-compose logs
+```
 
 
 
 
-
-- Using two FROM in a dockerfile is called multi-stage image used to minimize layers of image
+- Using two FROM in a dockerfile is called ```multi-stage image``` used to minimize layers of image
 
 
 
 
 the most commonly used commands:
 -------------------------------
-- build: Build or rebuild services
-- bundle: Generate a Docker bundle from the Compose file
-- config: Validate and view the Compose file
-- create: Create services
-- down: Stop and remove containers, networks, images, and volumes
-- events: Receive real time events from containers
-- exec: Execute a command in a running container
-- help: Get help on a command
-- images: List images
-- kill: Kill containers
-- logs: View output from containers
-- pause: Pause services
-- port: Print the public port for a port binding
-- ps: List containers
+- ```build```: Build or rebuild services
+- ```bundle```: Generate a Docker bundle from the Compose file
+- ```config```: Validate and view the Compose file
+- ```create```: Create services
+- ```down```: Stop and remove containers, networks, images, and volumes
+- ```events```: Receive real time events from containers
+- ```exec```: Execute a command in a running container
+- ```help```: Get help on a command
+- ```images```: List images
+- ```kill```: Kill containers
+- ```logs```: View output from containers
+- ```pause```: Pause services
+- ```port```: Print the public port for a port binding
+- ```ps```: List containers
 
 
-- .dockerignore : a file used to ignore some files from being coped to an image
+- ```.dockerignore``` : a file used to ignore some files from being coped to an image
 as they are useless files to prevent large size of images or these files are senstive
-{as .gtignore in git}
+{as ```.gtignore``` in git}
 
 
 
@@ -505,32 +517,41 @@ platform to run this on
 
 
 - Initialize the manager:
-$ docker swarm init --advertise-addr <PrivateIP>
-
+```
+docker swarm init --advertise-addr <PrivateIP>
+```
 
 - Add the worker to the cluster:
-$ docker swarm join --token <Token> <PrivateIP>:2377
-
+```
+docker swarm join --token <Token> <PrivateIP>:2377
+```
 
 - List the nodes in the swarm:
-$ docker node ls
-
+```
+docker node ls
+```
 
 - Inspecting a node:
-$ docker node inspect <NodeName>
-
+```
+docker node inspect <NodeName>
+```
 
 - Promoting a worker to a manager:
-$ docker node promote <NodeName>
-
+```
+docker node promote <NodeName>
+```
 
 - Demoting a manager to a worker:
-$ docker node demote <NodeName>
-
+```
+docker node demote <NodeName>
+```
 
 - Removing a node form the swarm (node must be demoted first):
-$ docker node rm -f <NodeName>
-
+```
+docker node rm -f <NodeName>
+```
 
 - Getting the join-token:
-$ docker swarm join-token <Worker|Manager>
+```
+docker swarm join-token <Worker|Manager>
+```
