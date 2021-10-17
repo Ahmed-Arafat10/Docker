@@ -33,11 +33,12 @@ docker container run -it scriptimg
 ```
 
 - Now O/P is : ```Hi , your job is```
-> As ENTRYPOINT executes a script file, after creating a docker contianer
+> As ```ENTRYPOINT``` executes a script file, after creating a docker contianer
 from that image it will run that script automatically as an enterypoint
-+ The two parameters are empty (Remember)
+& The two parameters are empty (Remember)
 
 - To send parameters you have only two methods:
+
 1- Run image with two parameters
 ```
 docker container run -it scriptimg ahmed SE
