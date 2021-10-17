@@ -54,7 +54,7 @@ WORKDIR /opt
 ENTRYPOINT ["./file.sh"]
 --> CMD["ahmed","SE"]
 ```
-- Now CMD acts as the parameter of ENTRYPOINT
+- Now ```CMD``` acts as the parameter of ```ENTRYPOINT```
 
 - Now Run that image {Without giving any parameters}
 ```
@@ -420,7 +420,7 @@ version: '3.1'
 services:
 
   db:
-    image: mysql:5.7        # This Lie is same as $ docker build command
+    image: mysql:5.7        # This Lie is same as ```docker build``` command
     restart: always         # If container is stopped it keeps restarting
     environment:            # Environment Variables needed to start Database
       MYSQL_DATABASE: exampledb
@@ -435,7 +435,7 @@ services:
         - db
     image: wordpress:latest
     restart: always
-    ports:          # Same As $ docker container run -p 8080:80
+    ports:          # Same As ```docker container run -p 8080:80```
       - 8080:80
     restart: always
     environment:
