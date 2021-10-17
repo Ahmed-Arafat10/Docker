@@ -2,7 +2,7 @@
 
 
 
-- To understand more about difference between CMD & ENTRYPOINT:
+- To understand more about difference between ```CMD``` & ```ENTRYPOINT```:
 ---------------------------------------------------------------
 
 - Create file.sh script In it:
