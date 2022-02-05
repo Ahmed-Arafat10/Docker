@@ -231,7 +231,7 @@ own R/W Layer {Read/Write} in which all of its files/Directories are exist in
 docker container start <ContainerID>
 ```
 
-Create Costume Image :
+Create Custom Image :
 ---------------------
 
 - To create our own image we can do one of the following:
